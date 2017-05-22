@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MeetingLog.RecordedView">
+    
+    <ContentView.Content>
+        <StackLayout>
+            <Label Text="FileName: " x:Name="labelFileName"/>
+            <Label Text="Recorded Time 0:0:0" x:Name="labelRecordedTime"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Play" x:Name="buttonPlay" Grid.Row="0" Grid.Column="0" Style="{StaticResource darkerButton2}"/>
+                <Button Text="Stop" x:Name="buttonStop" Grid.Row="0" Grid.Column="1" Style="{StaticResource darkerButton2}"/>
+                <Button Text="Pause" x:Name="buttonPause" Grid.Row="0" Grid.Column="2" Style="{StaticResource darkerButton2}"/>
+
+            </Grid> 
+            <Button x:Name="buttonGetVoiceText" Text="Get Voice Text" Style="{StaticResource orangeButton}"/>
+
+            <Editor x:Name="entryRecognizedText" FontSize="10" HeightRequest="40" Text=""/>
+            
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

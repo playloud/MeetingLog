@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MeetingLog.QARec">
+
+    <ContentView.Content>
+        <ScrollView>
+            <StackLayout x:Name="slayout">
+
+                <!--question-->
+                <Label XAlign="Center" FontSize="30" Text="Question" />
+                <Editor FontSize="10" HeightRequest="50" x:Name="editorQuestion"></Editor>
+                
+                <!--answer part-->
+                <Label XAlign="Center" FontSize="30" Text="Answer" />
+                <Editor FontSize="10" HeightRequest="50" x:Name="editorAnswer"></Editor>
+
+                <!--media controls-->
+                <Label XAlign="Center" FontSize="30" Text="Record" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Text="REC" x:Name="buttonRec" Grid.Row="0" Grid.Column="0" Style="{StaticResource darkerButton2}"/>
+                    <Button Text="STOP" x:Name="buttonStop" Grid.Row="0" Grid.Column="1" Style="{StaticResource darkerButton2}"/>
+                    <Button Text="PAUSE" x:Name="buttonPause" Grid.Row="0" Grid.Column="2" Style="{StaticResource darkerButton2}"/>
+
+                    <Label Text="status" x:Name="labelRecStatus" FontSize="9" Grid.Row="1" Grid.Column="0"/>
+                    <Label Text="12:23:34" x:Name="labelRecTime" FontSize="9" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+
+    </ContentView.Content>
+</ContentView>

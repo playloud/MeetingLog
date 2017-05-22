@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MeetingLog.CreateMeetingLog">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout>
+                <Label FontSize="20" XAlign="Center" Text="Title"/>
+                <Entry FontSize="10" x:Name="title"/>
+
+                <!--place holder-->
+                <StackLayout x:Name="templateHolder" >
+                    <Label Text=".."/>
+                </StackLayout>
+
+                <Button Text="Add new.." x:Name="buttonAddNewElement"/>
+
+                <Button Text="Complete" x:Name="buttonCompleteMeeting"/>
+                
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
