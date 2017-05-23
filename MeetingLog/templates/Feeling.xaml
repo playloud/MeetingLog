@@ -2,8 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MeetingLog.Feeling">
     <ContentView.Content>
         <StackLayout>
-            
-            <Label Text="How Do you feel today?" XAlign="Center" FontSize="30" />
+            <Label Text="How Do you feel today?" XAlign="Center" FontSize="30" HorizontalOptions="Center"/>
             <Picker x:Name="pickerFeeling" HorizontalOptions="FillAndExpand">
                 <Picker.Items>
                     <x:String>Excellent</x:String>
@@ -14,9 +13,9 @@
                     <x:String>Bad</x:String>
                     <x:String>Very Bad</x:String>
                     <x:String>Worst</x:String>
-                    </Picker.Items>
+                </Picker.Items>
             </Picker> 
-            
         </StackLayout>
+        
     </ContentView.Content>
 </ContentView>
