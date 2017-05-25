@@ -13,7 +13,6 @@
                 </StackLayout>
 
                 <Button Text="Add new.." x:Name="buttonAddNewElement"/>
-
                 <Button Text="Complete" x:Name="buttonCompleteMeeting"/>
                 
             </StackLayout>

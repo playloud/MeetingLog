@@ -7,14 +7,14 @@ namespace MeetingLog
 		public App()
 		{
 			InitializeComponent();
-
+            MeetingDepot.GetInstance().LoadFromSave();
 			NavigationPage nav = new NavigationPage(new MeetingLogPage());
 			MainPage = nav;
 		}
 
 		protected override void OnStart()
 		{
-			// Handle when your app starts
+            
 		}
 
 		protected override void OnSleep()

@@ -13,12 +13,12 @@ namespace MeetingLog
 
 		string LoadText(string filename);
 
-		string[] GetAllFileContents();
+		//string[] GetAllFileContents();
 
 		string[] GetAllFileNames();
 
 		List<Meeting> GetAllMeetingObject();
 
-
+        void RemoveFile(string filepath);
 	}
 }

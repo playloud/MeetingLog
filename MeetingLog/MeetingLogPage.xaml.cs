@@ -14,29 +14,17 @@ namespace MeetingLog
 			// list view cell template
 			meetingList.ItemTemplate = new DataTemplate(typeof(MLCell));
 
+            // add tool bar items
+            ToolbarItem tbiNew = new ToolbarItem();
+			tbiNew.Text = "New";
 
-			// add tool bar items
-			ToolbarItem tbi = new ToolbarItem();
-			tbi.Text = "New";
+			this.ToolbarItems.Add(tbiNew);
 
-			this.ToolbarItems.Add(tbi);
-
-			tbi.Clicked += (sender, e) =>
+			tbiNew.Clicked += (sender, e) =>
 			{
 				CreateMeetingLog creator = new CreateMeetingLog();
 				creator.parentHandle = this;
 				Navigation.PushAsync(creator, true);
-			};
-
-			buttonAddToList.Clicked += (sender, e) =>
-			{
-				AddSomething();
-				//LoadMeetingLogs();
-			};
-
-			buttonSaveTextTest.Clicked += (sender, e) =>
-			{
-				DependencyService.Get<ISaveLoad>().SaveText("tempFile.txt", "this is test contents");
 			};
 
 			// when the meeting list clicked
@@ -53,11 +41,10 @@ namespace MeetingLog
 
 		protected override void OnAppearing()
 		{
-			//LoadMeetingLogs();
+            
 		}
 
-
-		public void LoadMeetingLogs()
+        public void LoadMeetingLogs()
 		{
 			// refresh items
 			this.meetingList.ItemsSource = null;
@@ -120,10 +107,21 @@ namespace MeetingLog
 			var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
 			deleteAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("."));
 			deleteAction.Clicked += (sender, e) =>
-			 {
-				 var mi = ((MenuItem)sender);
-				 Debug.WriteLine("Delete Context Action clicked: " + mi.CommandParameter);
-			 };
+			{
+				var mi = ((MenuItem)sender);
+				Debug.WriteLine("Delete Context Action clicked: " + mi.CommandParameter);
+                Meeting data = (Meeting)BindingContext;
+                Debug.WriteLine(data.filePathSaved);
+
+                //todo: ask 'are you sure?'
+
+                // now delete
+                MeetingDepot.GetInstance().RemoveFile(data.filePathSaved);
+
+                // then, reload data
+                MeetingLogPage rootPage = (MeetingLogPage)(Parent.Parent.Parent);
+                rootPage.LoadMeetingLogs();
+			};
 
 			ContextActions.Add(moreAction);
 			ContextActions.Add(deleteAction);

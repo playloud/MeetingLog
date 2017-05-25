@@ -49,11 +49,14 @@ namespace MeetingLog
 			return toReturn;
 		}
 
+        // when it first called. 
 		public void LoadFromSave()
 		{
-			// load all files
+            // load all files
+            List<Meeting> allData = DependencyService.Get<ISaveLoad>().GetAllMeetingObject();
 
-
+            // load up
+            this.meetings.AddRange(allData);
 
 		}
 
@@ -62,8 +65,9 @@ namespace MeetingLog
 			
 		}
 
-		public void Save(string fileName,Meeting data)
+		public void Save(string fileName, Meeting data)
 		{
+            data.filePathSaved = fileName;
 			DependencyService.Get<ISaveLoad>().SaveText(fileName, data.ToJSON());
 
 		}
@@ -88,7 +92,20 @@ namespace MeetingLog
 			return null;
 		}
 
-}
+        public void RemoveFile(string path)
+        {
+            // delete internal object first
+            var meetingQuery = meetings.Where(a => a.filePathSaved == path);
+            if(meetingQuery.Any())
+            {
+                int index = meetings.IndexOf(meetingQuery.FirstOrDefault());
+                meetings.RemoveAt(index);
+            }
+
+            DependencyService.Get<ISaveLoad>().RemoveFile(path);
+        }
+
+    }
 
 
 

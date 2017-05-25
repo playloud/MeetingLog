@@ -8,8 +8,8 @@
             
         </ListView>
 
-        <Button x:Name="buttonAddToList" Text="add something"/>
-        <Button x:Name="buttonSaveTextTest" Text="save test"/>
+
+
     </StackLayout>
 
 

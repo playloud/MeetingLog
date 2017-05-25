@@ -6,7 +6,13 @@ namespace MeetingLog
 {
 	public class Meeting : IContent
 	{
-		public string UID
+        public string filePathSaved
+        {
+            get;
+            set;
+        }
+
+        public string UID
 		{
 			get;
 			set;
