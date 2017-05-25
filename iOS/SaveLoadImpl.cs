@@ -59,17 +59,17 @@ namespace MeetingLog
 			System.IO.File.WriteAllText(filePath, data);
 		}
 
-		public string[] GetAllFileContents()
+        public FileNameContent[] GetAllFileContents()
 		{
 			var documentsPath = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			var filePath = Path.Combine(documentsPath, this.dbFolder);
 
-			if (Directory.Exists(filePath))
+			if (!   Directory.Exists(filePath))
 				Directory.CreateDirectory(filePath);
 			         
 			string[] allPath = Directory.GetFiles(filePath);
-			List<string> contents = new List<string>();
-			allPath.ToList().ForEach(a => contents.Add(File.ReadAllText(a)));
+			List<FileNameContent> contents = new List<FileNameContent>();
+			allPath.ToList().ForEach(a => contents.Add(new FileNameContent() { FilePath = a, FileContent=File.ReadAllText(a)}));
 			return contents.ToArray();
 		}
 
@@ -77,13 +77,14 @@ namespace MeetingLog
 		{
 			List<Meeting> meetings = new List<Meeting>();
 
-			string[] allContents = GetAllFileContents();
+			FileNameContent[] allContents = GetAllFileContents();
 
 			allContents.ToList().ForEach(a =>
 			{
 				try
 				{
-					Meeting meeting = JsonConvert.DeserializeObject<Meeting>(a);
+                    Meeting meeting = JsonConvert.DeserializeObject<Meeting>(a.FileContent);
+                    meeting.filePathSaved = a.FilePath;
 					meetings.Add(meeting);
 				}
 				catch
@@ -92,14 +93,34 @@ namespace MeetingLog
 				}
 
 			});
-
 			return meetings;
 		}
+
+        public void RemoveFile(string path)
+        {
+            File.Delete(path);
+        }
 
 		public string[] GetAllFileNames()
 		{
 			return GetAllFileName();
+        }
 
-		}
+        // helper class for loading Meeting object
+        public class FileNameContent
+        {
+            public string FilePath
+            {
+                get;
+                set;
+            }
+
+            public string FileContent
+            {
+                get;
+                set;
+            }
+
+        }
 	}
 }
